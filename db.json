@@ -2,7 +2,7 @@
     "users": [
         {
           "id": 1,
-          "fullName": "Simon",
+          "firstName": "Simon",
           "lastName": "Julius",
           "mobile": "08064344075",
           "email": "mandonglawrence@gmail.com",
