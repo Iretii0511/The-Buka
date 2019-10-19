@@ -125,8 +125,6 @@
     color: white;
     background: transparent;
   }
-  
- 
   /* ==========================================================================
      #TITLE
      ========================================================================== */
@@ -141,26 +139,28 @@
      #CARD
      ========================================================================== */
   .card {
-    overflow: hidden;
-    border-radius: 3px;
     background: #fff;
   }
   
   .card-3 {
-    background: #000;
-    border-radius: 10px;
+    background: rgb(218, 61, 4);
+    border-radius: 50px;
     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
     width: 100%;
     display: table;
+    overflow: hidden;
+    border: none;
   }
   
   .card-3 .card-heading {
+    border-radius: 0px 0px 0px 50px;
     background: url("enjoyee.jpg") top left/cover no-repeat;
     display: table-cell;
     width: 50%;
   }
   
   .card-3 .card-body {
+    border-radius: 0px 50px 0px 0px;
     padding: 57px 65px;
     padding-bottom: 65px;
     background-color: rgb(218, 61, 4);

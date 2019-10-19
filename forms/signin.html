@@ -45,7 +45,7 @@
             </form>
             <ul class="navbar-nav ml-auto">
                 <li class="nav=item">
-                    <a href="signup.html" class="nav-link">Sign Up</a>
+                    <a href="signup.html" class="nav-link">Sign up</a>
                 </li>
                 <li class="nav-item">
                     <a href="signin.html" class="nav-link">Sign In</a>
@@ -63,10 +63,10 @@
                     <h2 class="title">Sign in</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <input class="input--style-3" type="email" placeholder="Email or Phone number" name="email">
+                            <input id="email" class="input--style-3" type="email" placeholder="Email or Phone number" name="email">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Password" name="name">
+                            <input id="password" class="input--style-3" type="password" placeholder="Password" name="name">
                         </div>
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green submitbtn btn-info" type="submit">Log in</button>
@@ -77,9 +77,56 @@
         </div>
     </div>
 
+    <script src="../js/jquery.js"></script>
 
-</body>
-    
+<script>
+        $(document).ready(function(){
+            $('form').on('submit',function(e){
+                e.preventDefault();
+                //lets create our variables
+                let email = $('#email').val();
+                let password = $('#password').val();
+                     $.ajax({
+                         url:"http://localhost:3000/users?email="+email,
+                         success:function(users){
+                            console.log(users)
+                             if(users.length){
+                              const [data] = users;
+                              if(data.password === password){
+                                  if(data.isAdmin === true){
+                                    if(sessionStorage){
+                                        sessionStorage.userData=user[0].firstName;
+                                        sessionStorage.userDatal=user[0].lastName;
+                                    }
+                                    window.location = "./admin.html"
+                                  }else{
+                                    // return alert(data.fname);
+                                    //let remove for every new
+                                    // localStorage.removeItem(userData);
+                                    if(sessionStorage){
+                                        sessionStorage.userData=user[0].fistName;
+                                        sessionStorage.userDatal=user[0].lastName;
+                                        sessionStorage.userEmail=user[0].email;
+                                    }
+                                   
+                                    //console.log(localStorage.userData)
+                                    window.location = "./users.html"
+                                  }
+                                
+                              }else{
+                             return     alert("Invalid email or password");
+                              }
+                              
+                             }
+                         },
+                         method:"GET"
+                     });
+                    
+              //reset email field
+                     $('#email').val("");
+                      });
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

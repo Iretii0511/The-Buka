@@ -39,9 +39,15 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0 ml-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search for food" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" style="border-bottom: none; margin-bottom: 0pc; padding-bottom: 0px;" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" style="border-bottom: none;">
+                        <span class="fas fa-search fa-sm"></span>
+                    </button>
+                    </div>
+                </div>
             </form>
             <ul class="navbar-nav ml-auto">
                 <li class="nav=item">
@@ -63,25 +69,25 @@
                     <h2 class="title">Registration Info</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="First Name" name="name">
+                            <input id="firstName" class="input--style-3" type="text" placeholder="First Name" name="name">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Last Name" name="name">
+                            <input id="lastName" class="input--style-3" type="text" placeholder="Last Name" name="name">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Gender" name="name">
+                            <input id="gender" class="input--style-3" type="text" placeholder="Gender" name="name">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="email" placeholder="Email" name="email">
+                            <input id="email" class="input--style-3" type="email" placeholder="Email" name="email">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Phone" name="phone">
+                            <input id="phone" class="input--style-3" type="text" placeholder="Phone" name="phone">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Enter a password" name="name">
+                            <input id="password" class="input--style-3" type="password" placeholder="Enter a password" name="name">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Confirm password" name="name">
+                            <input id="confirmPassword" class="input--style-3" type="password" placeholder="Confirm password" name="name">
                         </div>
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green submitbtn btn-info" type="submit">Join Us</button>
@@ -92,12 +98,69 @@
         </div>
     </div>
 
+    <script src="../js/jquery.js"></script>
 
-</body>
-    
+    <script>
+
+        
+    $(document).ready(function(){
+        $('form').on('submit',function(e){
+            e.preventDefault();
+            //lets create our variables
+            const firstName = $('#firstName').val();
+            const lastName = $('#lastName').val();
+            const gender = $("gender").val();
+            const phone = $('#phone').val();
+            const email = $('#email').val();
+            const password = $('#password').val();
+            const confirmPassword = $('#confirmPassword').val();
+             if(password === confirmPassword){
+                 $.ajax({
+                     url:"http://localhost:3000/users?email="+email,
+                     success:function(result){
+                         if(result.length){
+                           return  alert("user already exist");
+                         }else{
+                            $.ajax({
+                    url:"http://localhost:3000/users",success:function(result){console.log(result)},
+                    method:"POST",
+                    data:{
+                        firstName,
+                        lastName,
+                        gender,
+                        phone,
+                        email,
+                        password,
+                        "isAdmin":false
+                    },
+                });
+                    window.location = '/pages/signin.html';    
+                     }
+                     },
+                     method:"GET"
+                 });
+                //clear all fields
+                $('#fname').val("");
+            $('#lname').val("");
+            $('#mobile').val("");
+            $('#email').val("");
+            
+           }{
+               alert("Password mismatched!")
+           }
+        //    $('#fname').val("");
+        //     $('#lname').val("");
+        //     $('#mobile').val("");
+        //     $('#email').val("");
+             });
+    });
+        </script>
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9d86de223e.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -4,10 +4,11 @@
           "id": 1,
           "firstName": "Simon",
           "lastName": "Julius",
-          "mobile": "08064344075",
-          "email": "mandonglawrence@gmail.com",
+          "gender": "male",
+          "phone": "08064344075",
+          "email": "js.gmail.com",
           "password": "Junetojuly889",
-          "isAdmin": true
+          "isAdmin": false
         }
     ],
     "food": [
