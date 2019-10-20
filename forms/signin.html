@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="form.css" rel="stylesheet" media="all">
-    <title>Registration</title>
+    <title>Sing in</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Colorlib Templates">
@@ -69,7 +69,7 @@
                             <input id="password" class="input--style-3" type="password" placeholder="Password" name="name">
                         </div>
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green submitbtn btn-info" type="submit">Log in</button>
+                            <button class="btn btn--pill btn--green submitbtn btn-info" type="submit" id="submit">Log in</button>
                         </div>
                     </form>
                 </div>
@@ -77,59 +77,65 @@
         </div>
     </div>
 
-    <script src="../js/jquery.js"></script>
-
-<script>
+    <script src="../jquery.js"></script>
+    <!--
+    ===================================================================
+    LOGIN AUTH
+    ===================================================================
+    -->
+    <script>
         $(document).ready(function(){
-            $('form').on('submit',function(e){
+            $('#submit').on('click', function(e){
                 e.preventDefault();
-                //lets create our variables
-                let email = $('#email').val();
-                let password = $('#password').val();
-                     $.ajax({
-                         url:"http://localhost:3000/users?email="+email,
-                         success:function(users){
-                            console.log(users)
-                             if(users.length){
-                              const [data] = users;
-                              if(data.password === password){
-                                  if(data.isAdmin === true){
-                                    if(sessionStorage){
-                                        sessionStorage.userData=user[0].firstName;
-                                        sessionStorage.userDatal=user[0].lastName;
+                //==================================
+                //Obtain the values entered by user
+                //===================================
+                const email = $('#email').val();
+                const password = $('#password').val();
+                const url = 'http://localhost:3000/users?email=' + email;
+                if(email==='' || password ===''){
+                    $("body").append(`<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width:30%;margin-left:35%">
+                    Form filed(s) cannot be empty.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times</span>
+                    </button>
+                    </div>
+                    `)}else { 
+                        $.ajax({url, success:function(jsonValue){
+                            if(jsonValue.length){
+                                let [data] = jsonValue;
+                                if(data.password === password){
+                                    if(data.isAdmin === "true"){
+                                        sessionStorage.firstName = data.firstName;
+                                        sessionStorage.lastName = data.lastName;
+                                        sessionStorage.email = email;
+                                        window.location = 'admin.html'
+                                    }else if(data.isAdmin === "false"){
+                                        
+                                        sessionStorage.firstName = data.firstName;
+                                        sessionStorage.lastName = data.lastName;
+                                        sessionStorage.email = email;
+                                        window.location = '../index.html' // link to frontpage
                                     }
-                                    window.location = "./admin.html"
-                                  }else{
-                                    // return alert(data.fname);
-                                    //let remove for every new
-                                    // localStorage.removeItem(userData);
-                                    if(sessionStorage){
-                                        sessionStorage.userData=user[0].fistName;
-                                        sessionStorage.userDatal=user[0].lastName;
-                                        sessionStorage.userEmail=user[0].email;
-                                    }
-                                   
-                                    //console.log(localStorage.userData)
-                                    window.location = "./users.html"
-                                  }
-                                
-                              }else{
-                             return     alert("Invalid email or password");
-                              }
-                              
-                             }
-                         },
-                         method:"GET"
-                     });
-                    
-              //reset email field
-                     $('#email').val("");
-                      });
-        });
-    </script>
+                                }else{
+                                        //==================================
+                                        //Apend wrong password Entered
+                                        //===================================
+                                }
+                            }else{
+                                //===================================================
+                                //Append 'This user does not exist, Register with us'
+                                //===================================================
+                            }
+                        }, method: 'GET'
+                        }) //Ajax request ends here
+                    }
+                    }) // submit action ends here
+        })
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9d86de223e.js" crossorigin="anonymous"></script>
 </body>
 </html>
