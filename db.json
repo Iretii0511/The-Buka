@@ -1,24 +1,52 @@
 {
-    "users": [
-        {
-          "id": 1,
-          "firstName": "Simon",
-          "lastName": "Julius",
-          "gender": "male",
-          "phone": "08064344075",
-          "email": "js.gmail.com",
-          "password": "Junetojuly889",
-          "isAdmin": false
-        }
-    ],
-    "food": [
-        {
-            "id": 1,
-            "foodName": "eba",
-            "ownerName": "Simon",
-            "ownerEmail": "simonj@gmail.com",
-            "foodPrice": 100,
-            "orderDate": "12/09/45"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Simon",
+      "lastName": "Julius",
+      "gender": "male",
+      "phone": "08064344075",
+      "email": "js.gmail.com",
+      "password": "Junetojuly889",
+      "isAdmin": "true"
+    },
+    {
+      "id": 2,
+      "firstName": "Cimon",
+      "lastName": "Julius",
+      "gender": "male",
+      "phone": "08064344075",
+      "email": "simonjulius0511@gmail.com",
+      "password": "password",
+      "isAdmin": "false"
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "phone": "",
+      "email": "",
+      "password": "",
+      "isAdmin": "false",
+      "id": 3
+    },
+    {
+      "firstName": "Ify",
+      "lastName": "Oba",
+      "phone": "8168507497",
+      "email": "rutical55@yahoo.com",
+      "password": "123",
+      "isAdmin": "false",
+      "id": 4
+    }
+  ],
+  "food": [
+    {
+      "id": 1,
+      "foodName": "eba",
+      "ownerName": "Simon",
+      "ownerEmail": "simonj@gmail.com",
+      "foodPrice": 100,
+      "orderDate": "12/09/45"
+    }
+  ]
 }
