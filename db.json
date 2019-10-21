@@ -35,6 +35,7 @@
       "foodName": "eba",
       "ownerName": "Simon",
       "ownerEmail": "simonj@gmail.com",
+      "url": "../food/eba.jpg",
       "foodPrice": 100,
       "orderDate": "12/09/45"
     }
