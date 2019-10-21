@@ -11,32 +11,22 @@
       "isAdmin": "true"
     },
     {
-      "id": 2,
-      "firstName": "Cimon",
-      "lastName": "Julius",
-      "gender": "male",
-      "phone": "08064344075",
-      "email": "simonjulius0511@gmail.com",
-      "password": "password",
-      "isAdmin": "false"
+      "firstName": "Blessing",
+      "lastName": "Okadigbo",
+      "phone": "0647447",
+      "email": "okadigbo@gmail.com",
+      "password": "Blessing1",
+      "isAdmin": "false",
+      "id": 2
     },
     {
-      "firstName": "",
-      "lastName": "",
-      "phone": "",
-      "email": "",
-      "password": "",
+      "firstName": "Audu",
+      "lastName": "Ogbe",
+      "phone": "78672331",
+      "email": "audu@gmail.com",
+      "password": "Auduo1",
       "isAdmin": "false",
       "id": 3
-    },
-    {
-      "firstName": "Ify",
-      "lastName": "Oba",
-      "phone": "8168507497",
-      "email": "rutical55@yahoo.com",
-      "password": "123",
-      "isAdmin": "false",
-      "id": 4
     }
   ],
   "food": [
