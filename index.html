@@ -5,9 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <title >The Bukkaah</title>
 </head>
 <body>
+
+    <style>
+        html{
+            height: 100%;
+        }
+        #content{
+            text-align: center;
+            padding-top: 15% ;
+            font-family: Lato;
+            text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+                         0px 8px 13px rgba(0,0,0,0.1),
+                         0px 18px 23px rgba(0,0,0,0.1);
+        }
+        h1, h3, button {
+            color: white;
+        }
+        h1 {
+            font-weight: 1000;
+            font-size: 5em;
+        }
+        hr{
+            width: 850px;
+            border-top: 2px solid #f8f8f8;
+            border-bottom: 2px solid rgba(0,0,0,0.2)
+        }
+        .reg-icon{
+            color: orangered
+        }
+        #reg{
+            color: white 
+        }
+    </style>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a href="#" class="navbar-brand"><img src="logo.png" alt="#"></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menu"><span class="navbar-toggler-icon"></span></button>
@@ -47,9 +80,15 @@
     </nav>
 
     <div class="container">
-        <div class="card">
-            <div class="card-body">
-                Hungry? Create your food and we deliver it in split seconds
+        <div class="row">
+           
+            <div class="col-lg-12">
+                <div id="content">
+                    <h1>The Bukkaah</h1>
+                    <h3>Your one stop for the most beautiful delicacies from across the world</h3>
+                    <hr>
+                    <button class="btn btn-success btn-lg"><i class="fas fa-paw reg-icon"></i> <a href="forms/signup.html" id="reg">Register now!</a></button>
+                </div>
             </div>
         </div>
     </div>
@@ -64,10 +103,44 @@
             $('.signin-signout').html(`<ul style="display:inline">
                     <li><a href="profile.html">${firstName}</a></li>
                     <li><a href="#">Activity</a></li>
-                    <li><a href="#">Log Out</a></li>
+                    <li><a href="index.html" id="logout"">Log Out</a></li>
                 </ul>`);
+                $('#logout').click(function(){
+                    sessionStorage.clear()
+                })
             }
     </script>
+    <!--===========================================
+        BACGROUND IMAGES
+   ============================================ -->
+   <script>
+
+       $(function () {
+    var body = $('body');
+    const images = [
+            'url(frontpageImage/food-serving.jpg)',
+            'url(frontpageImage/beef-bowl-cherry-tomatoes-209459.jpg)',
+            'url(frontpageImage/biriyani-chicken-cooked-1624487.jpg)',
+            'url(frontpageImage/jonathan-borba-BIyCLp0_Vlw-unsplash.jpg)',
+            'url(frontpageImage/mae-mu-rXDCb-Bmgdg-unsplash.jpg)',
+            'url(frontpageImage/kimiya-oveisi-bsZ-dG3ZMMo-unsplash.jpg)',
+            'url(frontpageImage/cheese-course-cuisine-261604.jpg)',
+            'url(frontpageImage/igor-rand-4LZPmKbgQiQ-unsplash.jpg)'
+       ]
+    var current = 0;
+
+    function nextBackground() {
+        body.css({
+            'background-image':
+        images[current = ++current % images.length], 'background-size': '1400px 900px', 'background-position': 'center'});
+
+        setTimeout(nextBackground, 6000);
+    }
+    setTimeout(nextBackground, 6000);
+    body.css('background-image', images[0]);
+});
+
+   </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
