@@ -8,15 +8,28 @@
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/styles.css">
+        <script src="../jquery.js"></script>
+
 </head>
 <body>
 
     <style>
+        body{
+            background-color: orangered;
+        }
         nav{
             margin-bottom: 20px;
         }
+        #jumbHead{
+            
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            font-weight: 700;
+        }
     </style>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-info bg-info navbar-sticky">
         <a href="#" class="navbar-brand"><img src="logo.png" alt="#"></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menu"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="menu">
@@ -54,17 +67,48 @@
 
     </nav>
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron"  id="jumbHead">
+            <p>
+                <button class="btn btn-info" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2"><i class="fas fa-cart-arrow-down"></i> View my Cart</button>
+            </p>
+                
+                        <table class="table table-striped collapse multi-collapse" id="multiCollapseExample1">
+                            <thead class="thead-dark"> 
+                                <th scope="col">Name</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col"></th>
+                            </thead>
+                            <tbody id="cartTable">
+                                
+
+                                
+                            </tbody>
+
+                        </table>
+
+                        <div class="collapse multi-collapse totalDiv" id="multiCollapseExample2">
+                            <h4 style="font-style: italic; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Total N<span id="myTotal">0</span></h4>
+                        </div>
+
+                        <div class="collapse multi-collapse" id="multiCollapseExample2">
+                        <div class="card card-body">
+                                <a class="btn btn-success" href="order.html">Purchase!</a>
+                            </div>
+                        </div>
+
+                        
+                    
+                    
+
             <h1>Available Food</h1>
         </div>
         <div class="row" id="display">
-            
+
         </div>
     </div>
-   
-    
         
-    <script src="../jquery.js"></script>
         <script>
             $(document).ready(function(){
                 
@@ -77,28 +121,109 @@
                            //console.log(result)
                            result.forEach(food=>{
                               
-                               output.append(`<div class="col-lg-3 col-md-6">
+                               output.append(`<div class="col-lg-3 col-md-6" style="margin-bottom: 30px">
                                                 <div class="card">
-                                                    <p class="table-head">
-                                                        ${food.id}
+                                                    <p class="table-head bg-info" >
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-lg-12" style="text-align: center">
+                                                                 ${food.foodName}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12" style="text-align: center">
+                                                                <button class="btn btn-sm btn-success add-to-cart" data-id =${food.id} data-name =${food.foodName} data-price=${food.foodPrice} data-image=${food.url}><i class="fas fa-plus-circle"></i> Add To Cart</button>
+                                                            </div>
+                                                        </div>
+                                                        
                                                     </p>
-                                                    <img class="card-img-top" src=${food.url} alt="">
-                                                    <div class="card-body">
-                                                        <ul class="card-text"><li>${food.foodName}</li>
+                                                    <img class="card-img-top" src=${food.url} style= alt="">
+                                                    <div class="card-body bg-info">
+                                                        <ul class="card-text"><li>By ${food.ownerName}</li>
                                                         <li>${food.foodPrice}</li>
                                                         <li>${food.origin}</li></ul>
                                                     </div>
                                                 </div>
                                             </div>`);
-                                      
                                        
                            })
-                           }
+                           const cartTable = $('#cartTable')
+                           $('.add-to-cart').on('click',function(e){
+                               e.preventDefault();
+                                    cartTable.append(`
+                                    <tr>
+                                    <td>${e.target.dataset.name}</td>
+                                    <td><img src=${e.target.dataset.image} style="max-width: 50px; height: 50px;"></img></td>
+                                    <td id="price" value=${parseInt(e.target.dataset.price)}>${e.target.dataset.price}</td>
+                                    <td><select id="quantity"><option class="quantity" value=1>1</option>
+                                        <option value=2>2</option>
+                                        <option value=3>3</option>
+                                        <option value=4>4</option>
+                                    <select></td>
+                                       <td> <button type="button" class="btn btn-danger" style="margin-left:0px">Remove</button></td>
+                                </tr>
+
+                                    ` 
+                                    )
+                                    let tableArray = Array.from(cartTable);
+                                    
+                                    updateCartTotal()
+
+                                    // creating the remove function
+
+                                    let remove = $('#cartTable tr td button');
+                                    remove.click(function(e){
+                                        e.preventDefault()
+                                        $(this).parent().parent().remove();
+                                        e.target.click(updateCartTotal());
+                                        
+                                    })
+                                    // update cart to
+                                    
+                                    function updateCartTotal (){
+                                        let total = 0;
+                                        for (let el of tableArray){
+                                            let price = +($('#cartTable tr #price').text());
+                                        let quantity = +($('#cartTable tr #quantity').val());
+                                        total = total + price*quantity;
+                                        let totalElement;
+                                        if (isNaN(total)){
+                                         totalElement = $('#myTotal').text(0);
+                                        }else{
+                                            totalElement = $('#myTotal').text(total);
+
+
+
+                                        }
+                                        // let table = $('#cartTable');
+                                        // let tableRow = $('#cartTable tr');
+                                                                                }
+                            
+                                        
+                                        
+                                    }
+
+                                    let quantityInput = $('#quantity');
+                                    quantityInput.change(function(e){
+                                        e.preventDefault();
+                                        updateCartTotal();                                    });
+
+                           })
+
                            
-                        },
-                        method: 'GET'
+            
+                           }       
+                           },
+                           method: 'GET'
+
+
+  
+                           })
                            
-                    })
+                         
+                           
+                    
+
                            
                 
                         //    //add delete function to my delete button
@@ -181,8 +306,9 @@
                 // });
                 //  })
                  });
+                
         </script>
-
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/9d86de223e.js" crossorigin="anonymous"></script>

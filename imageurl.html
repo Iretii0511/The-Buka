@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <ul>
+
+        </ul>
+    </div>
+<script>
+    function getJsonData (){
+        $.ajax({
+            method: 'GET',
+            url: 'http://localhost:3000/url',
+            dataType: 'json',
+            success: onSuccess,
+            error: onError
+            })
+    }
+
+    function onSuccess(jsonFile){
+        $('.container')
+        for (let element of jsonFile){
+            $('ul').append(
+                `
+                    <li>${element.Amala}</li>
+                    <li>${element.CoconutRice}</li>
+                    <li>${element.Jollof}</li>
+                    <li>${element.yelloGarri}</li>
+                    
+                    <li>${element.JollofBeef}</li>
+                    <li>${element.Rice}</li>
+                    <li>${element.WhiteRice}</li>
+                    <li>${element.FriedRice}</li>
+                        
+                    <li>${element.ChickenPepperSoup}</li>
+                    <li>${element.CoconutRice}</li>
+                    <li>${element.Egusi}</li>
+                    <li>${element.Ewedu}</li>
+                        
+                    <li>${element.FishVegetable}</li>
+                    <li>${element.LightSoup}</li>
+                    <li>${element.MelonSoup}</li>
+                    <li>${element.CoconutRice}</li>
+                    <li>${element.OgbonoVegetable}</li>
+                    <li>${element.OhaSoup}</li>
+                    <li>${element.Okro}</li>
+                `
+            )
+        }
+    }
+</script>
+</body>
+</html>
