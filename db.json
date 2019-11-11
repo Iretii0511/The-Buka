@@ -11,33 +11,114 @@
       "isAdmin": "true"
     },
     {
-      "firstName": "Blessing",
-      "lastName": "Okadigbo",
-      "phone": "0647447",
-      "email": "okadigbo@gmail.com",
-      "password": "Blessing1",
+      "firstName": "Adeojo",
+      "lastName": "Micheal",
+      "phone": "877609986",
+      "email": "adeojo@gmail.com",
+      "password": "micheal01",
       "isAdmin": "false",
       "id": 2
     },
     {
-      "firstName": "Audu",
-      "lastName": "Ogbe",
-      "phone": "78672331",
-      "email": "audu@gmail.com",
-      "password": "Auduo1",
+      "firstName": "Olusiji",
+      "lastName": "Rankunmi",
+      "phone": "0973566",
+      "email": "sijikunle",
+      "password": "1234567",
       "isAdmin": "false",
       "id": 3
+    },
+    {
+      "firstName": "Adebola ",
+      "lastName": "Adekunle",
+      "phone": "098046257549",
+      "email": "adekunle@gmail.com",
+      "password": "123456",
+      "isAdmin": "false",
+      "id": 4
+    },
+    {
+      "firstName": "Francis",
+      "lastName": "Onogbude",
+      "phone": "976545426464",
+      "email": "francis@gmail.com",
+      "password": "francis",
+      "isAdmin": "false",
+      "id": 5
+    },
+    {
+      "firstName": "Yemi",
+      "lastName": "yemi",
+      "phone": "09464849348",
+      "email": "adekjlmd@gmail.com",
+      "password": "123456",
+      "isAdmin": "false",
+      "id": 6
+    },
+    {
+      "firstName": "Deborah",
+      "lastName": "Adegoke",
+      "phone": "97398613",
+      "email": "adegokedeborah85@gmail.com",
+      "password": "password",
+      "isAdmin": "false",
+      "id": 7
     }
   ],
   "food": [
     {
       "id": 1,
       "foodName": "eba",
-      "ownerName": "Simon",
+      "ownerName": "Julius, Simon",
       "ownerEmail": "simonj@gmail.com",
       "url": "../food/eba.jpg",
       "foodPrice": 100,
-      "orderDate": "12/09/45"
+      "origin": "African",
+      "date": "Thu Oct 24 2019 12:11:18 GMT+0100 (West Africa Standard Time)"
+    },
+    {
+      "foodName": "Amala",
+      "ownerName": "Francis ",
+      "ownerEmail": "francis@gmail.com",
+      "foodPrice": "500",
+      "origin": "Nigeria",
+      "date": "Sat Oct 26 2019 15:48:24 GMT+0100 (West Africa Standard Time)",
+      "id": 2
     }
-  ]
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "foodName": "Eba",
+      "foodPrice": 2500,
+      "totalBill": 5000,
+      "quantity": 2,
+      "deliveryLocation": "Ikorodu Central",
+      "userMail": "jully@gmail.com",
+      "date": "Thu Oct 24 2019 12:11:18 GMT+0100 (West Africa Standard Time)"
+    }
+  ],
+  "url": {
+    "WhiteRice": "../food-pixies/wyteRice.jpg",
+    "Jollof": "../food-pixies/jollofu.jpg",
+    "yelloGarri": "../food-pixies/ebayelo.jpg",
+    "PoundedYam": "../food-pixies/iyan.jpg",
+    "JollofBeef": "../food-pixies/jolofbeef.jpg",
+    "Rice": "../food-pixies/whiteRice.jpg",
+    "Amala": "../food-pixies/amala.jpg",
+    "CoconutRice": "../food-pixies/coconutrice.jpg",
+    "FriedRice": "../food-pixies/friedRice.jpg",
+    "ChickenPepperSoup": "../soupimages/chickenpepersoup.jpg",
+    "ChickenStew": "../soupimages/chickestew.jpg",
+    "EfoRiro": "../soupimages/eforiroandshaki.jpg",
+    "Egusi": "../soupimages/egusisoup.jpg",
+    "Ewedu": "../soupimages/ewedu.jpg",
+    "FishVegetable": "../soupimages/fishvegetable.jpg",
+    "LightSoup": "../soupimages/lightsoup.jpg",
+    "MelonSoup": "../soupimages/melonsoup.jpg",
+    "Ogbono": "../soupimages/ogbono.jpg",
+    "OgbonoVegetable": "../soupimages/ogbonoandvegetable.jpg",
+    "OhaSoup": "../soupimages/ohasoup.jpg",
+    "Okro": "../soupimages/Okro.jpg"
+  }
 }
